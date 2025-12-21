@@ -66,17 +66,24 @@
   <!-- Chat bubble -->
   <div id="chat-bubble">💬</div>
 
-  <script>
-    const bubble = document.getElementById("chat-bubble");
-    const popup = document.getElementById("chat-popup");
+<script>
+  const bubble = document.getElementById("chat-bubble");
+  const popup = document.getElementById("chat-popup");
 
-    bubble.addEventListener("click", () => {
-      popup.style.display =
-        popup.style.display === "none" || popup.style.display === ""
-          ? "block"
-          : "none";
-    });
-  </script>
+  // Toggle chat on bubble click
+  bubble.addEventListener("click", () => {
+    popup.style.display =
+      popup.style.display === "none" || popup.style.display === ""
+        ? "block"
+        : "none";
+  });
+
+  // Auto-open chat after 3 seconds
+  setTimeout(() => {
+    popup.style.display = "block";
+  }, 3000);
+</script>
+
 
 </body>
 </html>
