@@ -2,187 +2,180 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>AI Chat Assistant Demo | High Desert Media</title>
+  <title>High Desert Media | AI Chat Solutions</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="AI Chat Assistant for Ecommerce - Boost sales and automate support.">
 
   <style>
     :root {
       --primary: #2563eb;
-      --dark: #111827;
-      --light-bg: #f9fafb;
+      --secondary: #1e40af;
+      --accent: #3b82f6;
+      --dark: #0f172a;
+      --text-gray: #475569;
+      --light-bg: #f8fafc;
       --white: #ffffff;
     }
 
     body {
-      font-family: 'Segoe UI', Arial, sans-serif;
+      font-family: 'Inter', -apple-system, sans-serif;
       background-color: var(--light-bg);
       color: var(--dark);
-      margin: 0;
-      padding: 0;
-      line-height: 1.6;
+      margin: 0; padding: 0; line-height: 1.6;
     }
 
-    .container {
-      max-width: 850px;
-      margin: 40px auto;
+    .navbar {
       background: var(--white);
-      padding: 40px;
-      border-radius: 16px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+      padding: 15px 5%;
+      border-bottom: 1px solid #e2e8f0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky; top: 0; z-index: 1000;
     }
 
-    header { border-bottom: 2px solid #eee; padding-bottom: 20px; margin-bottom: 30px; text-align: center; }
+    .logo { font-weight: 800; font-size: 1.2rem; color: var(--primary); letter-spacing: -0.5px; }
 
-    h1 { color: var(--primary); font-size: 2.2rem; margin-bottom: 10px; }
-    h2 { color: var(--dark); margin-top: 30px; font-size: 1.5rem; border-left: 4px solid var(--primary); padding-left: 15px; }
-    
-    .description { font-size: 1.2rem; color: #4b5563; font-weight: 500; }
+    .hero {
+      text-align: center;
+      padding: 60px 5% 40px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
 
-    .grid-lang { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+    h1 { font-size: 3rem; font-weight: 800; margin-bottom: 20px; line-height: 1.1; color: var(--dark); }
+    .hero p { font-size: 1.25rem; color: var(--text-gray); margin-bottom: 30px; }
 
-    ul { list-style: none; padding: 0; }
-    li { margin-bottom: 12px; padding-left: 30px; position: relative; font-size: 1rem; }
-    li::before { content: "🚀"; position: absolute; left: 0; }
+    .container { max-width: 1000px; margin: 0 auto; padding: 0 5%; }
+
+    .grid-lang { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 50px; }
+
+    .card {
+      background: var(--white);
+      padding: 30px;
+      border-radius: 20px;
+      border: 1px solid #e2e8f0;
+      transition: all 0.3s ease;
+    }
+    .card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
+
+    .card h2 { color: var(--primary); font-size: 1.4rem; margin-top: 0; display: flex; align-items: center; gap: 10px; }
+
+    .platforms {
+      text-align: center; margin: 40px 0; padding: 20px;
+      background: #fff; border-radius: 15px; border: 1px dashed #cbd5e1;
+    }
+    .platform-list { font-weight: 600; color: #94a3b8; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
 
     .cta-box {
-      margin-top: 40px;
-      padding: 30px;
-      background: #eff6ff;
-      border-radius: 12px;
-      border: 1px solid #dbeafe;
+      background: var(--dark);
+      color: var(--white);
+      padding: 50px;
+      border-radius: 24px;
       text-align: center;
+      margin: 60px 0;
     }
-
-    .btn-contact {
+    .cta-box h3 { font-size: 2rem; margin-top: 0; }
+    .btn-primary {
       display: inline-block;
       background: var(--primary);
       color: white;
-      padding: 15px 30px;
+      padding: 16px 40px;
       text-decoration: none;
-      border-radius: 8px;
-      font-weight: bold;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 1.1rem;
       margin-top: 20px;
-      transition: transform 0.2s, background 0.2s;
+      transition: 0.3s;
     }
+    .btn-primary:hover { background: var(--accent); transform: scale(1.05); }
 
-    .btn-contact:hover { background: #1d4ed8; transform: translateY(-2px); }
-
-    .try-assistant {
-      text-align: center;
-      margin-top: 30px;
-      font-weight: bold;
-      color: var(--primary);
-      animation: bounce 2s infinite;
-    }
-
-    /* Chat bubble button */
+    /* Chat Elements */
     #chat-bubble {
-      position: fixed;
-      bottom: 25px;
-      right: 25px;
-      width: 65px;
-      height: 65px;
-      background-color: var(--primary);
-      color: #fff;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 30px;
-      cursor: pointer;
-      box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
+      position: fixed; bottom: 30px; right: 30px;
+      width: 70px; height: 70px;
+      background: var(--primary);
+      color: white; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 32px; cursor: pointer;
+      box-shadow: 0 10px 25px rgba(37, 99, 235, 0.4);
       z-index: 9999;
-      transition: transform 0.3s;
     }
-    #chat-bubble:hover { transform: scale(1.1); }
 
-    /* Chat popup */
     #chat-popup {
-      position: fixed;
-      bottom: 100px;
-      right: 25px;
-      width: 380px;
-      height: 600px;
-      max-width: 90vw;
-      max-height: 70vh;
-      background: #fff;
-      border-radius: 16px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-      display: none;
-      z-index: 9999;
-      overflow: hidden;
-      border: 1px solid #eee;
+      position: fixed; bottom: 110px; right: 30px;
+      width: 400px; height: 600px; max-width: 90vw; max-height: 80vh;
+      background: white; border-radius: 24px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+      display: none; z-index: 9999; overflow: hidden;
+      border: 1px solid #e2e8f0;
     }
 
     #chat-popup iframe { width: 100%; height: 100%; border: none; }
 
-    @keyframes bounce {
-      0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
-      40% {transform: translateY(-10px);}
-      60% {transform: translateY(-5px);}
-    }
-
     @media (max-width: 768px) {
+      h1 { font-size: 2.2rem; }
       .grid-lang { grid-template-columns: 1fr; }
-      .container { margin: 10px; padding: 20px; }
-      h1 { font-size: 1.7rem; }
     }
   </style>
 </head>
 <body>
 
-  <div class="container">
-    <header>
-      <h1>🤖 AI Chat Assistant Demo</h1>
-      <p class="description">
-        Increase sales & support / Aumente sus ventas y soporte
-      </p>
-    </header>
+  <nav class="navbar">
+    <div class="logo">HIGH DESERT MEDIA</div>
+    <div style="font-size: 0.8rem; font-weight: bold; color: #64748b;">AI SOLUTIONS 2025</div>
+  </nav>
 
+  <section class="hero">
+    <h1>Venda más con Inteligencia Artificial</h1>
+    <p>La forma más rápida de automatizar el soporte y las ventas de su eCommerce.</p>
+  </section>
+
+  <div class="container">
     <div class="grid-lang">
-      <!-- English -->
-      <div>
-        <h2>What it can do</h2>
-        <ul>
-          <li>Answer customer questions 24/7.</li>
-          <li>Help choose the right size/product.</li>
-          <li>Handle shipping & returns.</li>
-          <li>Improve customer confidence.</li>
-          <li>Book appointments directly.</li>
+      <div class="card">
+        <h2>🇬🇧 For your Business</h2>
+        <ul style="list-style: none; padding: 0;">
+          <li>✓ 24/7 Instant response.</li>
+          <li>✓ Scale your support without hiring more staff.</li>
+          <li>✓ Trained with your own data and products.</li>
+          <li>✓ Supports 90+ languages.</li>
         </ul>
       </div>
-
-      <!-- Español -->
-      <div>
-        <h2>Lo que puede hacer</h2>
-        <ul>
-          <li>Responde preguntas 24/7.</li>
-          <li>Ayuda a elegir tallas/productos.</li>
-          <li>Gestiona envíos y devoluciones.</li>
-          <li>Mejora la confianza del cliente.</li>
-          <li>Reserva citas directamente.</li>
+      <div class="card">
+        <h2>🇪🇸 Para su Negocio</h2>
+        <ul style="list-style: none; padding: 0;">
+          <li>✓ Respuesta instantánea 24/7.</li>
+          <li>✓ Escale sin necesidad de más personal.</li>
+          <li>✓ Entrenado con sus propios productos.</li>
+          <li>✓ Soporta más de 90 idiomas.</li>
         </ul>
+      </div>
+    </div>
+
+    <div class="platforms">
+      <p style="margin-bottom: 10px; font-weight: bold; color: #64748b;">COMPATIBLE CON</p>
+      <div class="platform-list">
+        <span>Shopify</span> • <span>WooCommerce</span> • <span>Magento</span> • <span>Wix</span> • <span>Custom Web</span>
       </div>
     </div>
 
     <div class="cta-box">
-      <h3>🛍️ Want this on your store? / ¿Lo quieres en tu tienda?</h3>
-      <p>Customized for your brand. / Personalizado para tu marca.</p>
-      <a href="mailto:contact.highdesertmedia@gmail.com" class="btn-contact">
-        Contact Me / Contáctame
+      <h3>¿Listo para modernizar su tienda?</h3>
+      <p>Configure su asistente personalizado hoy mismo.</p>
+      <a href="mailto:contact.highdesertmedia@gmail.com" class="btn-primary">
+        Contactar / Get in Touch
       </a>
-      <p style="margin-top:15px; font-size: 0.9rem;">contact.highdesertmedia@gmail.com</p>
-    </div>
-
-    <div class="try-assistant">
-      👉 Try the assistant / Prueba el asistente 💬
+      <p style="margin-top: 20px; font-size: 0.9rem; opacity: 0.8;">contact.highdesertmedia@gmail.com</p>
     </div>
   </div>
 
+  <!-- Chat popup -->
   <div id="chat-popup">
-    <iframe src="https://www.chatbase.co/chatbot-iframe/7OzS-Enoxhf_0O_McnWbf"></iframe>
+    <iframe src="www.chatbase.co"></iframe>
   </div>
 
+  <!-- Chat bubble -->
   <div id="chat-bubble">💬</div>
 
   <script>
@@ -193,7 +186,8 @@
       popup.style.display = (popup.style.display === "none" || popup.style.display === "") ? "block" : "none";
     });
 
-    setTimeout(() => { popup.style.display = "block"; }, 3000);
+    // Abrir automáticamente después de 4 segundos
+    setTimeout(() => { popup.style.display = "block"; }, 4000);
   </script>
 
 </body>
