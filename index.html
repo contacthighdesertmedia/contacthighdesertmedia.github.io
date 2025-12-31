@@ -1,204 +1,181 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>Activewear Store Demo</title>
+  <title>AI Chat Assistant Demo | High Desert Media</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <style>
+    :root {
+      --primary: #2563eb;
+      --dark: #111827;
+      --light-bg: #f9fafb;
+      --white: #ffffff;
+    }
+
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background-color: var(--light-bg);
+      color: var(--dark);
       margin: 0;
+      padding: 0;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 850px;
+      margin: 40px auto;
+      background: var(--white);
       padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    }
+
+    header { border-bottom: 2px solid #eee; padding-bottom: 20px; margin-bottom: 30px; }
+
+    h1 { color: var(--primary); font-size: 2.2rem; margin-bottom: 10px; }
+    h2 { color: var(--dark); margin-top: 30px; font-size: 1.5rem; }
+    
+    .description { font-size: 1.2rem; color: #4b5563; }
+
+    ul { list-style: none; padding: 0; }
+    li { margin-bottom: 12px; padding-left: 35px; position: relative; font-size: 1.1rem; }
+    li::before { content: "🚀"; position: absolute; left: 0; }
+
+    .cta-box {
+      margin-top: 40px;
+      padding: 30px;
+      background: #eff6ff;
+      border-radius: 12px;
+      border: 1px solid #dbeafe;
+    }
+
+    .email {
+      font-weight: bold;
+      color: var(--primary);
+      text-decoration: none;
+      font-size: 1.2rem;
+    }
+
+    .try-assistant {
+      text-align: center;
+      margin-top: 30px;
+      font-weight: bold;
+      color: var(--primary);
+      animation: bounce 2s infinite;
     }
 
     /* Chat bubble button */
     #chat-bubble {
       position: fixed;
-      bottom: 20px;
-      right: 20px;
-      width: 60px;
-      height: 60px;
-      background-color: #000;
+      bottom: 25px;
+      right: 25px;
+      width: 65px;
+      height: 65px;
+      background-color: var(--primary);
       color: #fff;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 28px;
+      font-size: 30px;
       cursor: pointer;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
       z-index: 9999;
+      transition: transform 0.3s;
     }
+    #chat-bubble:hover { transform: scale(1.1); }
 
     /* Chat popup */
     #chat-popup {
       position: fixed;
-      bottom: 90px;
-      right: 20px;
-      width: 350px;
-      height: 500px;
+      bottom: 100px;
+      right: 25px;
+      width: 380px;
+      height: 600px;
+      max-width: 90vw; /* Ajuste para móviles */
+      max-height: 70vh;
       background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
       display: none;
       z-index: 9999;
       overflow: hidden;
+      border: 1px solid #eee;
     }
 
-    #chat-popup iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
+    #chat-popup iframe { width: 100%; height: 100%; border: none; }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+      40% {transform: translateY(-10px);}
+      60% {transform: translateY(-5px);}
+    }
+
+    @media (max-width: 600px) {
+      .container { margin: 10px; padding: 20px; }
+      h1 { font-size: 1.7rem; }
     }
   </style>
 </head>
 <body>
 
-  <h1 style="font-size: 36px; margin-bottom: 10px;">
-    AI Chat Assistant for Online Stores
-  </h1>
+  <div class="container">
+    <header>
+      <h1>🤖 AI Chat Assistant Demo</h1>
+      <p class="description">
+        Responde preguntas, recomienda productos y aumenta tus ventas automáticamente con Inteligencia Artificial.
+      </p>
+    </header>
 
-  <p style="font-size: 18px; max-width: 600px;">
-    Answer customer questions, recommend products, and increase sales automatically with an AI-powered chat assistant.
-  </p>
- 
-  <h2 style="margin-top: 40px;">
-    What this assistant can do
-  </h2>
+    <h2>¿Qué puede hacer este asistente?</h2>
+    <ul>
+      <li>Responder preguntas de los clientes al instante 24/7.</li>
+      <li>Ayudar a elegir la talla o el producto adecuado.</li>
+      <li>Gestionar consultas sobre envíos y devoluciones automáticamente.</li>
+      <li>Mejorar la confianza del cliente y la experiencia de compra.</li>
+      <li>Permitir reservas de citas o llamadas directamente desde el chat.</li>
+    </ul>
 
-  <ul style="font-size: 16px; line-height: 1.6;">
-    <li>Answer customer questions instantly</li>
-    <li>Help shoppers choose the right size or product</li>
-    <li>Respond to shipping and return questions</li>
-    <li>Be available 24/7 without human support</li>
-    <li>Improve customer experience and confidence</li>
-    <li>Allow customers to book appointments or calls directly from the chat</li>
-  </ul>
-  <h2 style="margin-top: 40px;">
-    Want this on your store?
-  </h2>
+    <div class="cta-box">
+      <h3>🛍️ ¿Quieres esto en tu tienda online?</h3>
+      <p>Este asistente se personaliza totalmente para tu marca y catálogo de productos.</p>
+      <p>📩 <strong>Contáctame para configurarlo:</strong></p>
+      <a href="mailto:contact.highdesertmedia@gmail.com" class="email">contact.highdesertmedia@gmail.com</a>
+    </div>
 
-  <p style="font-size: 16px; max-width: 600px;">
-    This AI chat assistant can be customized for your brand, products, and customers.
-    <br><br>
-    📩 Contact me to set this up for your store.
-  </p>
-
-  <p style="font-size: 16px;">
-    Email: <strong>contact.highdesertmedia@gmail.com</strong><br>
-    
-  </p>
-
+    <div class="try-assistant">
+      👉 Prueba el asistente en la esquina inferior derecha
+    </div>
+  </div>
 
   <!-- Chat popup -->
   <div id="chat-popup">
     <iframe src="https://www.chatbase.co/chatbot-iframe/7OzS-Enoxhf_0O_McnWbf"></iframe>
   </div>
 
-
-
-  <div id="chat-cta">
-  👉Try the assistant yourself 
-</div>
-
-  <!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Asistente de Chat con IA</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f9fafb;
-      color: #111827;
-      margin: 0;
-      padding: 40px;
-    }
-    .container {
-      max-width: 800px;
-      margin: auto;
-      background: #ffffff;
-      padding: 40px;
-      border-radius: 10px;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.08);
-    }
-    h1 {
-      color: #2563eb;
-    }
-    ul {
-      padding-left: 20px;
-    }
-    .cta {
-      margin-top: 30px;
-      padding: 20px;
-      background: #eff6ff;
-      border-radius: 8px;
-    }
-    .email {
-      font-weight: bold;
-      color: #1d4ed8;
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <h1>🤖 Asistente de Chat con IA para Tiendas Online</h1>
-
-    <p>
-      Responda las preguntas de sus clientes, recomiende productos y aumente sus ventas
-      de forma automática con un asistente de chat impulsado por inteligencia artificial.
-    </p>
-
-    <h2>🚀 Lo que este asistente puede hacer</h2>
-    <ul>
-      <li>Responder preguntas de los clientes al instante.</li>
-      <li>Ayudar a los compradores a elegir la talla o el producto adecuado.</li>
-      <li>Responder dudas sobre envíos y devoluciones.</li>
-      <li>Estar disponible 24/7 sin necesidad de soporte humano.</li>
-      <li>Mejorar la experiencia y la confianza del cliente.</li>
-      <li>Permitir que los clientes reserven citas o llamadas desde el chat.</li>
-    </ul>
-
-    <div class="cta">
-      <h3>🛍️ ¿Quiere esto en su tienda?</h3>
-      <p>
-        Este asistente de chat con IA puede personalizarse para su marca, sus productos
-        y sus clientes.
-      </p>
-      <p>
-        📩 <strong>Contáctame para configurar esto en su tienda</strong><br/>
-        ✉️ Correo electrónico: <span class="email">contact.highdesertmedia@gmail.com</span>
-      </p>
-      <p>👉 <strong>Pruebe el asistente usted mismo</strong></p>
-    </div>
-  </div>
-</body>
-</html>
-
-
   <!-- Chat bubble -->
   <div id="chat-bubble">💬</div>
 
-<script>
-  const bubble = document.getElementById("chat-bubble");
-  const popup = document.getElementById("chat-popup");
+  <script>
+    const bubble = document.getElementById("chat-bubble");
+    const popup = document.getElementById("chat-popup");
 
-  // Toggle chat on bubble click
-  bubble.addEventListener("click", () => {
-    popup.style.display =
-      popup.style.display === "none" || popup.style.display === ""
-        ? "block"
-        : "none";
-  });
+    // Abrir/Cerrar chat al hacer clic en la burbuja
+    bubble.addEventListener("click", () => {
+      if (popup.style.display === "none" || popup.style.display === "") {
+        popup.style.display = "block";
+      } else {
+        popup.style.display = "none";
+      }
+    });
 
-  // Auto-open chat after 3 seconds
-  setTimeout(() => {
-    popup.style.display = "block";
-  }, 3000);
-</script>
-
+    // Abrir automáticamente después de 3 segundos para llamar la atención
+    setTimeout(() => {
+      popup.style.display = "block";
+    }, 3000);
+  </script>
 
 </body>
 </html>
+
