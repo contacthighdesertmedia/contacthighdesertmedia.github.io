@@ -9,7 +9,7 @@
     :root {
       --primary: #2563eb;
       --dark: #111827;
-      --light-bg: #f9fafb;
+      --light-bg: #f3f4f6;
       --white: #ffffff;
     }
 
@@ -19,34 +19,52 @@
       color: var(--dark);
       margin: 0;
       padding: 0;
-      line-height: 1.6;
+      line-height: 1.5;
     }
 
     .container {
-      max-width: 850px;
+      max-width: 1000px;
       margin: 40px auto;
       background: var(--white);
       padding: 40px;
-      border-radius: 16px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     }
 
-    header { border-bottom: 2px solid #eee; padding-bottom: 20px; margin-bottom: 30px; }
+    .main-header {
+      text-align: center;
+      border-bottom: 2px solid #eee;
+      padding-bottom: 30px;
+      margin-bottom: 30px;
+    }
 
-    h1 { color: var(--primary); font-size: 2.2rem; margin-bottom: 10px; }
-    h2 { color: var(--dark); margin-top: 30px; font-size: 1.5rem; }
-    
-    .description { font-size: 1.2rem; color: #4b5563; }
+    .main-header h1 { color: var(--primary); font-size: 2.5rem; margin: 0; }
+
+    /* Layout de dos idiomas */
+    .languages-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+
+    .lang-column h2 {
+      color: var(--primary);
+      border-left: 4px solid var(--primary);
+      padding-left: 15px;
+      font-size: 1.4rem;
+    }
 
     ul { list-style: none; padding: 0; }
-    li { margin-bottom: 12px; padding-left: 35px; position: relative; font-size: 1.1rem; }
-    li::before { content: "🚀"; position: absolute; left: 0; }
+    li { margin-bottom: 12px; padding-left: 30px; position: relative; font-size: 1rem; }
+    li::before { content: "✔"; position: absolute; left: 0; color: var(--primary); font-weight: bold; }
 
     .cta-box {
-      margin-top: 40px;
-      padding: 30px;
+      grid-column: span 2;
+      margin-top: 30px;
+      padding: 25px;
       background: #eff6ff;
       border-radius: 12px;
+      text-align: center;
       border: 1px solid #dbeafe;
     }
 
@@ -54,18 +72,19 @@
       font-weight: bold;
       color: var(--primary);
       text-decoration: none;
-      font-size: 1.2rem;
+      font-size: 1.3rem;
     }
 
     .try-assistant {
       text-align: center;
-      margin-top: 30px;
+      margin-top: 40px;
       font-weight: bold;
       color: var(--primary);
       animation: bounce 2s infinite;
+      font-size: 1.2rem;
     }
 
-    /* Chat bubble button */
+    /* Chat bubble */
     #chat-bubble {
       position: fixed;
       bottom: 25px;
@@ -84,7 +103,6 @@
       z-index: 9999;
       transition: transform 0.3s;
     }
-    #chat-bubble:hover { transform: scale(1.1); }
 
     /* Chat popup */
     #chat-popup {
@@ -93,15 +111,15 @@
       right: 25px;
       width: 380px;
       height: 600px;
-      max-width: 90vw; /* Ajuste para móviles */
+      max-width: 90vw;
       max-height: 70vh;
       background: #fff;
       border-radius: 16px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
       display: none;
       z-index: 9999;
       overflow: hidden;
-      border: 1px solid #eee;
+      border: 1px solid #ddd;
     }
 
     #chat-popup iframe { width: 100%; height: 100%; border: none; }
@@ -109,49 +127,64 @@
     @keyframes bounce {
       0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
       40% {transform: translateY(-10px);}
-      60% {transform: translateY(-5px);}
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: 800px) {
+      .languages-grid { grid-template-columns: 1fr; }
+      .cta-box { grid-column: span 1; }
       .container { margin: 10px; padding: 20px; }
-      h1 { font-size: 1.7rem; }
     }
   </style>
 </head>
 <body>
 
   <div class="container">
-    <header>
-      <h1>🤖 AI Chat Assistant Demo</h1>
-      <p class="description">
-        Responde preguntas, recomienda productos y aumenta tus ventas automáticamente con Inteligencia Artificial.
-      </p>
-    </header>
+    <div class="main-header">
+      <h1>AI Chat Assistant Demo</h1>
+      <p>Automate your sales and customer support / Automatice sus ventas y soporte.</p>
+    </div>
 
-    <h2>¿Qué puede hacer este asistente?</h2>
-    <ul>
-      <li>Responder preguntas de los clientes al instante 24/7.</li>
-      <li>Ayudar a elegir la talla o el producto adecuado.</li>
-      <li>Gestionar consultas sobre envíos y devoluciones automáticamente.</li>
-      <li>Mejorar la confianza del cliente y la experiencia de compra.</li>
-      <li>Permitir reservas de citas o llamadas directamente desde el chat.</li>
-    </ul>
+    <div class="languages-grid">
+      <!-- English Section -->
+      <div class="lang-column">
+        <h2>What this AI can do</h2>
+        <ul>
+          <li>Answer customer questions instantly 24/7.</li>
+          <li>Help shoppers choose the right size or product.</li>
+          <li>Handle shipping and return inquiries automatically.</li>
+          <li>Improve customer confidence and experience.</li>
+          <li>Allow customers to book calls directly from the chat.</li>
+        </ul>
+      </div>
 
-    <div class="cta-box">
-      <h3>🛍️ ¿Quieres esto en tu tienda online?</h3>
-      <p>Este asistente se personaliza totalmente para tu marca y catálogo de productos.</p>
-      <p>📩 <strong>Contáctame para configurarlo:</strong></p>
-      <a href="mailto:contact.highdesertmedia@gmail.com" class="email">contact.highdesertmedia@gmail.com</a>
+      <!-- Spanish Section -->
+      <div class="lang-column">
+        <h2>Lo que esta IA puede hacer</h2>
+        <ul>
+          <li>Responde preguntas al instante las 24/7.</li>
+          <li>Ayuda a elegir la talla o el producto adecuado.</li>
+          <li>Gestiona consultas sobre envíos y devoluciones.</li>
+          <li>Mejora la confianza y experiencia del cliente.</li>
+          <li>Permite reservar citas o llamadas desde el chat.</li>
+        </ul>
+      </div>
+
+      <div class="cta-box">
+        <h3>🛍️ Want this on your store? / ¿Quiere esto en su tienda?</h3>
+        <p>Customized for your brand and products. / Personalizado para su marca y productos.</p>
+        <p>📩 <strong>Contact me / Contáctame:</strong></p>
+        <a href="mailto:contact.highdesertmedia@gmail.com" class="email">contact.highdesertmedia@gmail.com</a>
+      </div>
     </div>
 
     <div class="try-assistant">
-      👉 Prueba el asistente en la esquina inferior derecha
+      👉 Try the assistant / Pruebe el asistente 💬
     </div>
   </div>
 
   <!-- Chat popup -->
   <div id="chat-popup">
-    <iframe src="https://www.chatbase.co/chatbot-iframe/7OzS-Enoxhf_0O_McnWbf"></iframe>
+    <iframe src="www.chatbase.co"></iframe>
   </div>
 
   <!-- Chat bubble -->
@@ -161,21 +194,15 @@
     const bubble = document.getElementById("chat-bubble");
     const popup = document.getElementById("chat-popup");
 
-    // Abrir/Cerrar chat al hacer clic en la burbuja
     bubble.addEventListener("click", () => {
-      if (popup.style.display === "none" || popup.style.display === "") {
-        popup.style.display = "block";
-      } else {
-        popup.style.display = "none";
-      }
+      popup.style.display = (popup.style.display === "none" || popup.style.display === "") ? "block" : "none";
     });
 
-    // Abrir automáticamente después de 3 segundos para llamar la atención
-    setTimeout(() => {
-      popup.style.display = "block";
-    }, 3000);
+    // Abre automáticamente en 3 segundos
+    setTimeout(() => { popup.style.display = "block"; }, 3000);
   </script>
 
 </body>
 </html>
+
 
