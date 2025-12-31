@@ -11,21 +11,23 @@
 
   <style>
     :root {
-      /* Nueva paleta: High-Value Corporate */
-      --primary: #0f172a; /* Slate 900 */
-      --accent: #2563eb;  /* Blue 600 */
-      --accent-soft: rgba(37, 99, 235, 0.1);
-      --text-main: #1e293b;
-      --text-muted: #64748b;
-      --bg-gradient: radial-gradient(circle at top right, #f8fafc, #e2e8f0);
+      /* Paleta Ultra-Moderna Dark */
+      --bg-dark: #020617;
+      --card-dark: rgba(15, 23, 42, 0.7);
+      --accent-blue: #3b82f6;
+      --accent-glow: rgba(59, 130, 246, 0.5);
+      --text-bright: #f8fafc;
+      --text-dim: #94a3b8;
       --white: #ffffff;
-      --shadow-premium: 0 20px 50px rgba(0, 0, 0, 0.1);
     }
 
     body {
       font-family: 'Inter', sans-serif;
-      background: var(--bg-gradient);
-      color: var(--text-main);
+      background-color: var(--bg-dark);
+      background-image: 
+        radial-gradient(circle at 0% 0%, rgba(37, 99, 235, 0.15) 0%, transparent 25%),
+        radial-gradient(circle at 100% 100%, rgba(37, 99, 235, 0.1) 0%, transparent 25%);
+      color: var(--text-bright);
       margin: 0;
       padding: 0;
       line-height: 1.6;
@@ -36,190 +38,159 @@
     }
 
     .container {
-      max-width: 1000px;
+      max-width: 950px;
       margin: 40px 20px;
-      background: rgba(255, 255, 255, 0.8);
-      backdrop-filter: blur(12px); /* Efecto Glassmorphism */
+      background: var(--card-dark);
+      backdrop-filter: blur(20px);
       padding: 60px;
-      border-radius: 32px;
-      box-shadow: var(--shadow-premium);
-      border: 1px solid rgba(255, 255, 255, 0.7);
-      animation: fadeIn 0.8s ease-out;
+      border-radius: 40px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      animation: slideIn 1s ease-out;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(30px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
     header { 
-      border-bottom: 1px solid rgba(0,0,0,0.05); 
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05); 
       padding-bottom: 40px; 
       margin-bottom: 50px; 
       text-align: center; 
     }
 
     h1 { 
-      color: var(--primary); 
-      font-size: 3rem; 
+      font-size: 3.5rem; 
       font-weight: 800;
-      letter-spacing: -0.04em;
-      margin-bottom: 16px; 
+      letter-spacing: -0.05em;
+      margin-bottom: 10px;
+      background: linear-gradient(to bottom, #fff, #94a3b8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
     
     .description { 
-      font-size: 1.2rem; 
-      color: var(--accent); 
-      font-weight: 400;
+      font-size: 1.1rem; 
+      color: var(--accent-blue); 
+      font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.2em;
     }
 
     .grid-lang { 
       display: grid; 
       grid-template-columns: 1fr 1fr; 
-      gap: 50px; 
+      gap: 60px; 
     }
 
     h2 { 
-      color: var(--primary); 
-      font-size: 1.4rem; 
-      font-weight: 700;
+      color: var(--white); 
+      font-size: 1.5rem; 
       margin-bottom: 25px;
-      display: flex;
-      align-items: center;
-    }
-
-    h2::before {
-      content: "";
-      width: 12px;
-      height: 12px;
-      background: var(--accent);
-      border-radius: 50%;
-      margin-right: 12px;
+      font-weight: 700;
     }
 
     ul { list-style: none; padding: 0; }
     li { 
-      margin-bottom: 18px; 
-      padding: 12px 12px 12px 40px; 
+      margin-bottom: 16px; 
+      padding: 10px 10px 10px 35px; 
       position: relative; 
       font-size: 1rem; 
-      color: var(--text-main);
-      background: rgba(255,255,255,0.4);
-      border-radius: 12px;
+      color: var(--text-dim);
       transition: 0.3s;
     }
-    li:hover {
-      background: var(--white);
-      transform: translateX(5px);
-    }
+    li:hover { color: var(--white); }
     li::before { 
-      content: "✓"; 
+      content: "→"; 
       position: absolute; 
-      left: 15px; 
-      color: var(--accent);
+      left: 0; 
+      color: var(--accent-blue);
       font-weight: bold;
     }
 
     .cta-box {
       margin-top: 60px;
       padding: 50px;
-      background: var(--primary);
-      border-radius: 24px;
-      color: var(--white);
+      background: linear-gradient(145deg, rgba(30, 41, 59, 0.5), rgba(15, 23, 42, 0.8));
+      border-radius: 30px;
+      border: 1px solid rgba(59, 130, 246, 0.2);
       text-align: center;
-      position: relative;
-      overflow: hidden;
     }
-
-    .cta-box h3 { font-size: 1.5rem; margin-bottom: 10px; }
-    .cta-box p { opacity: 0.8; margin-bottom: 30px; }
 
     .btn-contact {
       display: inline-block;
-      background: var(--accent);
+      background: var(--accent-blue);
       color: white;
-      padding: 20px 50px;
+      padding: 22px 60px;
       text-decoration: none;
-      border-radius: 16px;
-      font-weight: 700;
-      font-size: 1.1rem;
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3);
+      border-radius: 20px;
+      font-weight: 800;
+      font-size: 1.2rem;
+      margin-top: 20px;
+      transition: all 0.4s ease;
+      box-shadow: 0 0 20px var(--accent-glow);
     }
 
     .btn-contact:hover { 
-      background: #3b82f6;
-      transform: scale(1.05); 
-      box-shadow: 0 15px 30px rgba(37, 99, 235, 0.5);
+      transform: translateY(-5px);
+      box-shadow: 0 0 40px var(--accent-glow);
+      filter: brightness(1.1);
     }
 
     .try-assistant {
       text-align: center;
       margin-top: 50px;
-      font-weight: 600;
-      color: var(--accent);
-      font-size: 1.1rem;
-      animation: bounce 2.5s infinite;
+      color: var(--text-dim);
+      font-size: 0.9rem;
+      letter-spacing: 1px;
     }
 
-    /* BURBUJA DE CHAT ELEGANTE */
+    /* BURBUJA Y POPUP */
     #chat-bubble {
       position: fixed;
       bottom: 40px;
       right: 40px;
-      width: 65px;
-      height: 65px;
-      background: var(--primary);
-      color: #fff;
-      border-radius: 20px;
+      width: 70px;
+      height: 70px;
+      background: var(--accent-blue);
+      border-radius: 24px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 28px;
+      font-size: 30px;
       cursor: pointer;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+      box-shadow: 0 10px 30px rgba(59, 130, 246, 0.4);
       z-index: 9999;
-      transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
-    #chat-bubble:hover { transform: scale(1.1) rotate(5deg); }
+    #chat-bubble:hover { transform: scale(1.1) rotate(-5deg); }
 
     #chat-popup {
       position: fixed;
-      bottom: 120px;
+      bottom: 125px;
       right: 40px;
       width: 420px;
       height: 650px;
-      max-width: 90vw;
-      max-height: 80vh;
       background: #fff;
-      border-radius: 28px;
-      box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+      border-radius: 30px;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.6);
       display: none;
       z-index: 9999;
       overflow: hidden;
-      border: 1px solid rgba(0,0,0,0.05);
-      animation: slideUp 0.5s ease-out;
+      animation: popupOpen 0.4s ease-out;
     }
 
-    @keyframes slideUp {
-      from { opacity: 0; transform: translateY(40px) scale(0.95); }
-      to { opacity: 1; transform: translateY(0) scale(1); }
-    }
-
-    #chat-popup iframe { width: 100%; height: 100%; border: 0; }
-
-    @keyframes bounce {
-      0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
-      40% {transform: translateY(-10px);}
+    @keyframes popupOpen {
+      from { opacity: 0; transform: scale(0.9) translateY(20px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
     }
 
     @media (max-width: 768px) {
-      .grid-lang { grid-template-columns: 1fr; gap: 30px; }
-      .container { padding: 30px; margin: 15px; }
       h1 { font-size: 2.2rem; }
-      #chat-popup { width: calc(100% - 40px); right: 20px; bottom: 100px; }
+      .grid-lang { grid-template-columns: 1fr; }
+      .container { padding: 30px; }
     }
   </style>
 </head>
@@ -258,16 +229,16 @@
     </div>
 
     <div class="cta-box">
-      <h3>🛍️ Want this on your store? / ¿Lo quieres en tu tienda?</h3>
-      <p>Customized for your brand. / Personalizado para tu marca.</p>
+      <h3 style="color: white; font-size: 1.6rem; margin-bottom: 15px;">🛍️ Want this on your store? / ¿Lo quieres en tu tienda?</h3>
+      <p style="color: var(--text-dim); margin-bottom: 30px;">Customized for your brand. / Personalizado para tu marca.</p>
       <a href="mailto:contact.highdesertmedia@gmail.com" class="btn-contact">
         Contact Me / Contáctame
       </a>
-      <p style="margin-top:25px; font-size: 0.9rem; font-weight: 300; letter-spacing: 1px;">contact.highdesertmedia@gmail.com</p>
+      <p style="margin-top:30px; font-size: 0.8rem; color: var(--accent-blue); font-weight: bold; opacity: 0.7;">contact.highdesertmedia@gmail.com</p>
     </div>
 
     <div class="try-assistant">
-      👉 Try the assistant / Prueba el asistente 💬
+       SCROLL DOWN OR CLICK THE BUBBLE TO START 💬
     </div>
   </div>
 
@@ -280,7 +251,7 @@
     ></iframe>
   </div>
 
-  <div id="chat-bubble">💬</div>
+  <div id="chat-bubble">🤖</div>
 
   <script>
     const bubble = document.getElementById("chat-bubble");
@@ -291,12 +262,11 @@
       popup.style.display = isOpen ? "none" : "block";
     });
 
-    // Auto-abrir después de 3 segundos para llamar la atención
     setTimeout(() => { 
-      if(popup.style.display !== "block") {
+      if(window.innerWidth > 768) {
         popup.style.display = "block"; 
       }
-    }, 3000);
+    }, 2500);
   </script>
 
 </body>
