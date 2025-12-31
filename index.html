@@ -9,9 +9,12 @@
   <link href="fonts.googleapis.com" rel="stylesheet">
 
   <style>
-    : root {
+    :root {
       --primary: #2563eb;
       --primary-hover: #1d4ed8;
+      /* NUEVO AZUL PARA EL BOTÓN DE CONTACTO */
+      --cta-blue: #0046ff; 
+      --cta-blue-hover: #0036cc;
       --dark: #0f172a;
       --text-gray: #475569;
       --light-bg: #f8fafc;
@@ -106,24 +109,26 @@
       color: var(--dark);
     }
 
+    /* BOTÓN CONTACT ME - AZUL INTENSO */
     .btn-contact {
       display: inline-block;
-      background: var(--primary);
+      background: var(--cta-blue);
       color: white;
-      padding: 16px 36px;
+      padding: 18px 45px;
       text-decoration: none;
       border-radius: 12px;
-      font-weight: 600;
-      font-size: 1rem;
+      font-weight: 800;
+      font-size: 1.1rem;
       margin-top: 24px;
-      transition: all 0.2s ease;
-      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 70, 255, 0.25);
+      border: none;
     }
 
     .btn-contact:hover { 
-      background: var(--primary-hover); 
-      transform: translateY(-2px); 
-      box-shadow: 0 6px 15px rgba(37, 99, 235, 0.3);
+      background: var(--cta-blue-hover);
+      transform: translateY(-3px); 
+      box-shadow: 0 8px 25px rgba(0, 70, 255, 0.4);
     }
 
     .try-assistant {
@@ -230,9 +235,12 @@
     <div class="cta-box">
       <h3>🛍️ Want this on your store? / ¿Lo quieres en tu tienda?</h3>
       <p style="color: var(--text-gray);">Customized for your brand. / Personalizado para tu marca.</p>
+      
+      <!-- BOTÓN EN AZUL INTENSO -->
       <a href="mailto:contact.highdesertmedia@gmail.com" class="btn-contact">
         Contact Me / Contáctame
       </a>
+      
       <p style="margin-top:20px; font-size: 0.85rem; color: var(--text-gray); font-weight: 600;">contact.highdesertmedia@gmail.com</p>
     </div>
 
@@ -242,7 +250,7 @@
   </div>
 
   <div id="chat-popup">
-    <iframe src="https://www.chatbase.co/chatbot-iframe/7OzS-Enoxhf_0O_McnWbf"></iframe>
+    <iframe src="www.chatbase.co"></iframe>
   </div>
 
   <div id="chat-bubble">💬</div>
