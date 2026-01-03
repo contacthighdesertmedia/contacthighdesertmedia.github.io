@@ -177,3 +177,152 @@
       position: absolute;
       top: -50%; left: -50%; width: 200%; height: 200%;
       background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
+      transform: rotate(45deg);
+      animation: sweep 4s infinite;
+    }
+
+    @keyframes sweep {
+      0% { left: -110%; }
+      30% { left: 110%; }
+      100% { left: 110%; }
+    }
+
+    .btn-contact:hover { 
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: 0 20px 40px rgba(59, 130, 246, 0.5);
+    }
+
+    #chat-bubble {
+      position: fixed;
+      bottom: 40px; right: 40px;
+      width: 75px; height: 75px;
+      background: var(--accent-blue);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 32px;
+      cursor: pointer;
+      z-index: 9999;
+      box-shadow: 0 10px 30px rgba(59, 130, 246, 0.5);
+      animation: pulse 2s infinite;
+      transition: 0.5s;
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7); }
+      70% { box-shadow: 0 0 0 20px rgba(59, 130, 246, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+    }
+
+    #chat-popup {
+      position: fixed;
+      bottom: 130px; right: 40px;
+      width: 420px; height: 650px;
+      border-radius: 35px;
+      display: none;
+      z-index: 9999;
+      overflow: hidden;
+      box-shadow: 0 40px 80px rgba(0,0,0,0.8);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transform-origin: bottom right;
+      animation: zoomIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    @keyframes zoomIn {
+      from { opacity: 0; transform: scale(0.5) translate(20px, 20px); }
+      to { opacity: 1; transform: scale(1) translate(0, 0); }
+    }
+
+    @keyframes fadeIn { to { opacity: 1; } }
+
+    @media (max-width: 768px) {
+      .grid-lang { grid-template-columns: 1fr; }
+      h1 { font-size: 2.5rem; }
+      .container { padding: 30px; }
+      #chat-popup { width: 90%; right: 5%; bottom: 120px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-glow">
+    <div class="orbe" style="top: -10%; left: -10%;"></div>
+    <div class="orbe" style="bottom: -10%; right: -10%; animation-delay: -5s;"></div>
+  </div>
+
+  <div class="container">
+    <header>
+      <h1>AI Chat Assistant Demo</h1>
+      <p class="description">
+        Increase sales & support / Aumente sus ventas y soporte
+      </p>
+    </header>
+
+    <div class="grid-lang">
+      <div>
+        <h2>What it can do</h2>
+        <ul>
+          <li>Answer customer questions 24/7.</li>
+          <li>Help choose the right size/product.</li>
+          <li>Handle shipping & returns.</li>
+          <li>Improve customer confidence.</li>
+          <li>Book appointments directly.</li>
+        </ul>
+      </div>
+
+      <div>
+        <h2>Lo que puede hacer</h2>
+        <ul>
+          <li>Responde preguntas 24/7.</li>
+          <li>Ayuda a elegir tallas/productos.</li>
+          <li>Gestiona envíos y devoluciones.</li>
+          <li>Mejora la confianza del cliente.</li>
+          <li>Reserva citas directamente.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="cta-box">
+      <h3 style="color: white; font-size: 1.6rem; margin-bottom: 15px;">🛍️ Want this on your store? / ¿Lo quieres en tu tienda?</h3>
+      <p style="color: var(--text-dim); margin-bottom: 30px;">Customized for your brand. / Personalizado para tu marca.</p>
+      <a href="mailto:contact.highdesertmedia@gmail.com" class="btn-contact">
+        Contact Me / Contáctame
+      </a>
+      <p style="margin-top:30px; font-size: 0.8rem; color: var(--accent-blue); font-weight: bold; opacity: 0.6; letter-spacing: 1.5px;">contact.highdesertmedia@gmail.com</p>
+    </div>
+
+    <div style="text-align:center; margin-top: 40px; color: var(--text-dim); font-size: 0.8rem; opacity: 0.5;">
+        HIGH DESERT MEDIA • AI SOLUTIONS 2024
+    </div>
+  </div>
+
+  <div id="chat-popup">
+    <iframe
+        src="https://www.chatbase.co/chatbot-iframe/7OzS-Enoxhf_0O_McnWbf"
+        width="100%"
+        style="height: 100%; border: none;"
+    ></iframe>
+  </div>
+
+  <div id="chat-bubble">🤖</div>
+
+  <script>
+    const bubble = document.getElementById("chat-bubble");
+    const popup = document.getElementById("chat-popup");
+
+    bubble.addEventListener("click", () => {
+      if (popup.style.display === "none" || popup.style.display === "") {
+        popup.style.display = "block";
+      } else {
+        popup.style.display = "none";
+      }
+    });
+
+    setTimeout(() => { 
+      if(window.innerWidth > 768) {
+        popup.style.display = "block"; 
+      }
+    }, 3000);
+  </script>
+
+</body>
+</html>
