@@ -60,7 +60,7 @@
 
         /* --- HERO --- */
         .hero {
-            height: 80vh;
+            height: 60vh;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -84,10 +84,11 @@
             max-width: 500px;
             margin: 0 auto 30px;
             letter-spacing: 2px;
+            font-size: 0.9rem;
         }
 
-        /* --- PRODUCTOS --- */
-        .products { padding: 100px 20px; }
+        /* --- PRODUCTOS (ACTUALIZADO) --- */
+        .products { padding: 60px 20px; }
         
         .section-tag {
             color: var(--primary);
@@ -95,45 +96,61 @@
             font-weight: 700;
             letter-spacing: 5px;
             text-transform: uppercase;
-            margin-bottom: 10px;
+            margin-bottom: 40px;
             display: block;
             text-align: center;
         }
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 25px;
             max-width: 1200px;
             margin: 0 auto;
         }
 
         .product-card {
             background: var(--card-bg);
-            padding: 10px;
-            border-radius: 5px;
-            transition: 0.3s;
-            border: 1px solid transparent;
+            padding: 15px;
+            border-radius: 12px;
+            transition: 0.4s;
+            border: 1px solid rgba(255,255,255,0.05);
+            text-align: left;
         }
 
         .product-card:hover {
             border-color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 242, 255, 0.1);
         }
 
         .img-placeholder {
             width: 100%;
-            aspect-ratio: 3/4;
-            background: #1a1a1a;
+            aspect-ratio: 1/1;
+            background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
             margin-bottom: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #333;
-            font-weight: 900;
+            color: #444;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            border-radius: 8px;
+            border: 1px dashed #333;
         }
 
-        .product-info h3 { font-size: 1rem; margin-bottom: 5px; }
-        .product-info p { color: var(--primary); font-weight: 700; }
+        .product-info h3 { 
+            font-size: 1rem; 
+            margin-bottom: 8px; 
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        .product-info p { 
+            color: var(--primary); 
+            font-weight: 900; 
+            font-size: 1.2rem;
+        }
 
         /* --- CHATBOT SYSTEM --- */
         #chat-bubble {
@@ -143,7 +160,7 @@
             width: 65px;
             height: 65px;
             background: var(--primary);
-            border-radius: 20px; /* Estilo Kinetic cuadrado redondeado */
+            border-radius: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -153,7 +170,7 @@
             transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        #chat-bubble:hover { transform: scale(1.1) rotate(5deg); }
+        #chat-bubble svg { fill: #000; }
 
         #chat-popup {
             position: fixed;
@@ -168,39 +185,34 @@
             overflow: hidden;
             border: 1px solid rgba(0, 242, 255, 0.2);
             box-shadow: 0 20px 50px rgba(0,0,0,0.8);
-            animation: appear 0.3s ease-out;
-        }
-
-        @keyframes appear {
-            from { opacity: 0; transform: translateY(20px) scale(0.9); }
-            to { opacity: 1; transform: translateY(0) scale(1); }
         }
 
         /* --- DEMO FOOTER --- */
         .demo-disclaimer {
-            padding: 60px 20px;
+            padding: 80px 20px;
             text-align: center;
-            background: #0a0a0a;
+            background: #080808;
             border-top: 1px solid rgba(255,255,255,0.05);
-            margin-top: 50px;
         }
 
         .demo-disclaimer h4 {
             color: var(--primary);
-            margin-bottom: 10px;
-            font-size: 0.9rem;
+            margin-bottom: 15px;
+            font-size: 0.8rem;
+            letter-spacing: 3px;
         }
 
         .demo-disclaimer p {
             color: var(--text-dim);
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             max-width: 600px;
             margin: 0 auto;
+            line-height: 1.6;
         }
 
-        /* Mobile */
         @media (max-width: 768px) {
-            #chat-popup { width: 90%; right: 5%; bottom: 100px; }
+            #chat-popup { width: 92%; right: 4%; bottom: 100px; }
+            .hero-content h1 { font-size: 3.5rem; }
         }
     </style>
 </head>
@@ -209,15 +221,14 @@
     <header>
         <div class="logo">Aura <span>Kinetic</span></div>
         <nav class="nav-menu">
-            <a href="#">Shop</a>
-            <a href="#">Lab</a>
-            <a href="#">Contact</a>
+            <a href="#">Colección</a>
+            <a href="#">Tecnología</a>
         </nav>
     </header>
 
     <section class="hero">
-        <div class="container">
-            <span class="section-tag" style="text-align: center;">New Collection 2024</span>
+        <div class="container hero-content">
+            <span class="section-tag">High Performance Activewear</span>
             <h1>AURA<br>KINETIC</h1>
             <p>Ropa técnica diseñada para la movilidad urbana y el rendimiento extremo.</p>
         </div>
@@ -227,24 +238,31 @@
         <span class="section-tag">Featured Gear</span>
         <div class="grid">
             <div class="product-card">
-                <div class="img-placeholder">CORE TEE [01]</div>
+                <div class="img-placeholder">Apex // Image</div>
                 <div class="product-info">
-                    <h3>Camiseta Técnica Transpirable</h3>
+                    <h3>Apex Seamless Leggings</h3>
+                    <p>$64.00</p>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="img-placeholder">Zenith // Image</div>
+                <div class="product-info">
+                    <h3>Zenith Sports Bra</h3>
+                    <p>$42.00</p>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="img-placeholder">IronCore // Image</div>
+                <div class="product-info">
+                    <h3>Iron-Core Gym Shorts</h3>
                     <p>$45.00</p>
                 </div>
             </div>
             <div class="product-card">
-                <div class="img-placeholder">KINETIC PANT</div>
+                <div class="img-placeholder">Titan // Image</div>
                 <div class="product-info">
-                    <h3>Pantalón Cargo Waterproof</h3>
-                    <p>$120.00</p>
-                </div>
-            </div>
-            <div class="product-card">
-                <div class="img-placeholder">AURA SHELL</div>
-                <div class="product-info">
-                    <h3>Chaqueta Cortavientos Neón</h3>
-                    <p>$155.00</p>
+                    <h3>Titan Compression Tee</h3>
+                    <p>$35.00</p>
                 </div>
             </div>
         </div>
@@ -252,12 +270,12 @@
 
     <div class="demo-disclaimer">
         <h4>PLATAFORMA DEMO</h4>
-        <p>Este es un ejemplo funcional. El diseño, los colores y el catálogo de productos se pueden personalizar al 100% según el inventario y la imagen de marca de su empresa.</p>
+        <p>Este es un ejemplo funcional para Aura Kinetic. El diseño, la paleta de colores y el catálogo de productos se personalizan totalmente al gusto y necesidades de la marca y sus productos reales.</p>
     </div>
 
     <div id="chat-bubble">
-        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" fill="black" stroke="black" stroke-width="2" stroke-linejoin="round"/>
+        <svg width="30" height="30" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
     </div>
 
@@ -276,14 +294,11 @@
         bubble.addEventListener("click", () => {
             if (popup.style.display === "none" || popup.style.display === "") {
                 popup.style.display = "block";
-                bubble.style.background = "#ffffff"; // Cambia color al abrir
             } else {
                 popup.style.display = "none";
-                bubble.style.background = "var(--primary)";
             }
         });
 
-        // Auto-abrir demo en PC después de 4 segundos
         setTimeout(() => {
             if(window.innerWidth > 1024) {
                 popup.style.display = "block";
