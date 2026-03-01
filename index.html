@@ -100,4 +100,95 @@
         .btn:hover { background: var(--gold); color: var(--dark); }
 
         /* --- SERVICIOS --- */
-        .services { padding
+        .services { padding: 80px 0; background: var(--dark-light); }
+        .section-title { text-align: center; font-size: 2.5rem; margin-bottom: 50px; }
+        .section-title span { color: var(--gold); }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--dark);
+            padding: 40px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+
+        .card:hover { border-color: var(--gold); transform: translateY(-10px); }
+        .card h3 { font-size: 1.6rem; margin-bottom: 15px; color: var(--gold); }
+        .card p { color: var(--grey); margin-bottom: 20px; }
+        .card .price { font-weight: 700; font-size: 1.2rem; display: block; }
+
+        /* --- FOOTER --- */
+        footer { padding: 50px 0; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); }
+        footer p { color: var(--grey); font-size: 0.9rem; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">SANTINI'S <span>STUDIO</span></div>
+                <div class="nav-links">
+                    <a href="#">Inicio</a>
+                    <a href="#servicios">Servicios</a>
+                    <a href="#">Contacto</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <p>Master Barbers since 2018</p>
+            <h1>EL ARTE DE LA BARBERÍA</h1>
+            <br>
+            <a href="#servicios" class="btn">Ver Menú</a>
+        </div>
+    </section>
+
+    <section id="servicios" class="services">
+        <div class="container">
+            <h2 class="section-title">Nuestros <span>Servicios</span></h2>
+            
+            <div class="grid">
+                <div class="card">
+                    <h3>Corte Clásico</h3>
+                    <p>Un estilo atemporal ejecutado con precisión milimétrica.</p>
+                    <span class="price">$30.00</span>
+                </div>
+
+                <div class="card">
+                    <h3>Barba Real</h3>
+                    <p>Perfilado con navaja, toalla caliente y aceites hidratantes.</p>
+                    <span class="price">$20.00</span>
+                </div>
+
+                <div class="card">
+                    <h3>Servicio VIP</h3>
+                    <p>Corte, barba, masaje facial y una bebida de cortesía.</p>
+                    <span class="price">$55.00</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>SANTINI'S BARBER STUDIO - Calle Principal #123</p>
+            <p style="margin-top: 10px; font-size: 0.7rem;">&copy; 2024 TODOS LOS DERECHOS RESERVADOS</p>
+        </div>
+    </footer>
+
+</body>
+</html>
