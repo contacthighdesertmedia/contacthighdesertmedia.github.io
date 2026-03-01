@@ -10,7 +10,7 @@
 
     <style>
         :root {
-            --primary: #00f2ff; /* Cian Neón */
+            --primary: #00f2ff;
             --bg: #050505;
             --card-bg: #111111;
             --text-white: #ffffff;
@@ -27,7 +27,6 @@
             overflow-x: hidden;
         }
 
-        /* --- NAVEGACIÓN --- */
         header {
             padding: 20px;
             display: flex;
@@ -41,12 +40,7 @@
             z-index: 100;
         }
 
-        .logo { 
-            font-weight: 900; 
-            font-size: 1.5rem; 
-            letter-spacing: -1px;
-            text-transform: uppercase;
-        }
+        .logo { font-weight: 900; font-size: 1.5rem; letter-spacing: -1px; text-transform: uppercase; }
         .logo span { color: var(--primary); }
 
         .nav-menu a {
@@ -58,9 +52,8 @@
             text-transform: uppercase;
         }
 
-        /* --- HERO --- */
         .hero {
-            height: 60vh;
+            height: 50vh;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -69,7 +62,7 @@
         }
 
         .hero-content h1 {
-            font-size: clamp(3rem, 10vw, 6rem);
+            font-size: clamp(3.5rem, 10vw, 6rem);
             font-weight: 900;
             line-height: 0.9;
             text-transform: uppercase;
@@ -82,12 +75,11 @@
         .hero-content p {
             color: var(--text-dim);
             max-width: 500px;
-            margin: 0 auto 30px;
+            margin: 0 auto;
             letter-spacing: 2px;
             font-size: 0.9rem;
         }
 
-        /* --- PRODUCTOS (ACTUALIZADO) --- */
         .products { padding: 60px 20px; }
         
         .section-tag {
@@ -115,44 +107,33 @@
             border-radius: 12px;
             transition: 0.4s;
             border: 1px solid rgba(255,255,255,0.05);
-            text-align: left;
         }
 
         .product-card:hover {
             border-color: var(--primary);
             transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 242, 255, 0.1);
         }
 
-        .img-placeholder {
+        .product-img {
             width: 100%;
             aspect-ratio: 1/1;
-            background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+            background: #000;
             margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #444;
-            font-size: 0.7rem;
-            font-weight: 700;
-            text-transform: uppercase;
             border-radius: 8px;
-            border: 1px dashed #333;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.05);
         }
 
-        .product-info h3 { 
-            font-size: 1rem; 
-            margin-bottom: 8px; 
-            font-weight: 600;
-            letter-spacing: 0.5px;
-        }
-        .product-info p { 
-            color: var(--primary); 
-            font-weight: 900; 
-            font-size: 1.2rem;
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.4s;
         }
 
-        /* --- CHATBOT SYSTEM --- */
+        .product-info h3 { font-size: 1rem; margin-bottom: 8px; font-weight: 600; letter-spacing: 0.5px; }
+        .product-info p { color: var(--primary); font-weight: 900; font-size: 1.2rem; }
+
         #chat-bubble {
             position: fixed;
             bottom: 30px;
@@ -167,10 +148,7 @@
             cursor: pointer;
             z-index: 1000;
             box-shadow: 0 10px 30px rgba(0, 242, 255, 0.3);
-            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
-
-        #chat-bubble svg { fill: #000; }
 
         #chat-popup {
             position: fixed;
@@ -187,33 +165,17 @@
             box-shadow: 0 20px 50px rgba(0,0,0,0.8);
         }
 
-        /* --- DEMO FOOTER --- */
         .demo-disclaimer {
-            padding: 80px 20px;
+            padding: 60px 20px;
             text-align: center;
             background: #080808;
             border-top: 1px solid rgba(255,255,255,0.05);
         }
 
-        .demo-disclaimer h4 {
-            color: var(--primary);
-            margin-bottom: 15px;
-            font-size: 0.8rem;
-            letter-spacing: 3px;
-        }
+        .demo-disclaimer h4 { color: var(--primary); margin-bottom: 15px; font-size: 0.8rem; letter-spacing: 3px; }
+        .demo-disclaimer p { color: var(--text-dim); font-size: 0.85rem; max-width: 600px; margin: 0 auto; line-height: 1.6; }
 
-        .demo-disclaimer p {
-            color: var(--text-dim);
-            font-size: 0.85rem;
-            max-width: 600px;
-            margin: 0 auto;
-            line-height: 1.6;
-        }
-
-        @media (max-width: 768px) {
-            #chat-popup { width: 92%; right: 4%; bottom: 100px; }
-            .hero-content h1 { font-size: 3.5rem; }
-        }
+        @media (max-width: 768px) { #chat-popup { width: 92%; right: 4%; bottom: 100px; } }
     </style>
 </head>
 <body>
@@ -238,28 +200,28 @@
         <span class="section-tag">Featured Gear</span>
         <div class="grid">
             <div class="product-card">
-                <div class="img-placeholder">Apex // Image</div>
+                <div class="product-img"><img src="http://googleusercontent.com/image_collection/image_retrieval/835305589110578977_0" alt="Apex Leggings"></div>
                 <div class="product-info">
                     <h3>Apex Seamless Leggings</h3>
                     <p>$64.00</p>
                 </div>
             </div>
             <div class="product-card">
-                <div class="img-placeholder">Zenith // Image</div>
+                <div class="product-img"><img src="http://googleusercontent.com/image_collection/image_retrieval/8271310234289720092_0" alt="Zenith Sports Bra"></div>
                 <div class="product-info">
                     <h3>Zenith Sports Bra</h3>
                     <p>$42.00</p>
                 </div>
             </div>
             <div class="product-card">
-                <div class="img-placeholder">IronCore // Image</div>
+                <div class="product-img"><img src="http://googleusercontent.com/image_collection/image_retrieval/14595661654409191825_0" alt="Iron-Core Shorts"></div>
                 <div class="product-info">
                     <h3>Iron-Core Gym Shorts</h3>
                     <p>$45.00</p>
                 </div>
             </div>
             <div class="product-card">
-                <div class="img-placeholder">Titan // Image</div>
+                <div class="product-img"><img src="http://googleusercontent.com/image_collection/image_retrieval/10623548758064523102_0" alt="Titan Tee"></div>
                 <div class="product-info">
                     <h3>Titan Compression Tee</h3>
                     <p>$35.00</p>
@@ -270,40 +232,26 @@
 
     <div class="demo-disclaimer">
         <h4>PLATAFORMA DEMO</h4>
-        <p>Este es un ejemplo funcional para Aura Kinetic. El diseño, la paleta de colores y el catálogo de productos se personalizan totalmente al gusto y necesidades de la marca y sus productos reales.</p>
+        <p>Este es un ejemplo funcional para Aura Kinetic. El diseño, las imágenes de los productos y la paleta de colores se personalizan totalmente al gusto y necesidades del cliente según sus artículos reales.</p>
     </div>
 
     <div id="chat-bubble">
         <svg width="30" height="30" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" fill="black" stroke="black" stroke-width="2" stroke-linejoin="round"/>
         </svg>
     </div>
 
     <div id="chat-popup">
-        <iframe
-            src="https://www.chatbase.co/chatbot-iframe/7OzS-Enoxhf_0O_McnWbf"
-            width="100%"
-            style="height: 100%; border: none;"
-        ></iframe>
+        <iframe src="https://www.chatbase.co/chatbot-iframe/7OzS-Enoxhf_0O_McnWbf" width="100%" style="height: 100%; border: none;"></iframe>
     </div>
 
     <script>
         const bubble = document.getElementById("chat-bubble");
         const popup = document.getElementById("chat-popup");
-
         bubble.addEventListener("click", () => {
-            if (popup.style.display === "none" || popup.style.display === "") {
-                popup.style.display = "block";
-            } else {
-                popup.style.display = "none";
-            }
+            popup.style.display = (popup.style.display === "none" || popup.style.display === "") ? "block" : "none";
         });
-
-        setTimeout(() => {
-            if(window.innerWidth > 1024) {
-                popup.style.display = "block";
-            }
-        }, 4000);
+        setTimeout(() => { if(window.innerWidth > 1024) popup.style.display = "block"; }, 3000);
     </script>
 
 </body>
