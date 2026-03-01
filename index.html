@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>AI Chat Assistant Demo | High Desert Media</title>
+  <title>AI Commerce Assistant | High Desert Media</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,11 +12,12 @@
   <style>
     :root {
       --bg-dark: #020617;
-      --card-dark: rgba(15, 23, 42, 0.6);
+      --card-dark: rgba(15, 23, 42, 0.7);
       --accent-blue: #3b82f6;
+      --accent-cyan: #06b6d4;
       --text-bright: #f8fafc;
       --text-dim: #94a3b8;
-      --white: #ffffff; /* Variable añadida para que los títulos sean visibles */
+      --white: #ffffff;
     }
 
     body {
@@ -24,14 +25,13 @@
       background-color: var(--bg-dark);
       color: var(--text-bright);
       margin: 0;
-      overflow-x: hidden;
       min-height: 100vh;
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: center;
     }
 
-    /* Fondo animado con orbes */
+    /* Fondo animado */
     .bg-glow {
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
@@ -40,205 +40,166 @@
     }
     .orbe {
       position: absolute;
-      width: 500px;
-      height: 500px;
-      background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, transparent 70%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(59, 130, 246, 0.12) 0%, transparent 70%);
       border-radius: 50%;
-      filter: blur(60px);
-      animation: float 20s infinite alternate;
+      filter: blur(80px);
+      animation: float 25s infinite alternate;
     }
 
     @keyframes float {
-      0% { transform: translate(0, 0); }
-      100% { transform: translate(100px, 100px); }
+      0% { transform: translate(-10%, -10%); }
+      100% { transform: translate(20%, 20%); }
     }
 
     .container {
-      max-width: 950px;
-      margin: 40px 20px;
+      max-width: 1100px;
+      width: 90%;
+      margin: 60px 0;
       background: var(--card-dark);
-      backdrop-filter: blur(25px);
-      -webkit-backdrop-filter: blur(25px);
+      backdrop-filter: blur(30px);
+      -webkit-backdrop-filter: blur(30px);
       padding: 60px;
       border-radius: 40px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-      animation: reveal 1s cubic-bezier(0.16, 1, 0.3, 1);
+      animation: reveal 1s ease-out;
     }
 
     @keyframes reveal {
-      from { opacity: 0; transform: translateY(40px) scale(0.98); }
-      to { opacity: 1; transform: translateY(0) scale(1); }
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    header { 
-      text-align: center; 
-      margin-bottom: 50px; 
-    }
+    header { text-align: center; margin-bottom: 60px; }
 
     h1 { 
-      font-size: 3.5rem; 
+      font-size: clamp(2.5rem, 5vw, 4rem); 
       font-weight: 800;
       letter-spacing: -0.05em;
-      margin-bottom: 10px;
-      background: linear-gradient(180deg, #fff 0%, #64748b 100%);
+      margin-bottom: 15px;
+      background: linear-gradient(to bottom, #fff 30%, #3b82f6 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
-    
-    .description { 
-      font-size: 1rem; 
-      color: var(--accent-blue); 
-      font-weight: 600;
+
+    .badge {
+      background: rgba(59, 130, 246, 0.1);
+      color: var(--accent-blue);
+      padding: 8px 16px;
+      border-radius: 100px;
+      font-size: 0.8rem;
+      font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.3em;
-      opacity: 0;
-      animation: fadeIn 1s forwards 0.5s;
+      letter-spacing: 2px;
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      display: inline-block;
+      margin-bottom: 20px;
     }
 
-    .grid-lang { 
+    /* Product Showcase */
+    .product-demo {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 20px;
+      margin-bottom: 50px;
+      opacity: 0.8;
+    }
+    .product-card {
+      background: rgba(255,255,255,0.03);
+      padding: 15px;
+      border-radius: 20px;
+      text-align: center;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+    .product-card span { display: block; font-size: 0.8rem; color: var(--text-dim); margin-top: 10px; }
+
+    .grid-features { 
       display: grid; 
       grid-template-columns: 1fr 1fr; 
-      gap: 60px; 
+      gap: 40px; 
+      margin-top: 40px;
     }
 
-    h2 { 
+    .feature-list h2 { 
       color: var(--white); 
-      font-size: 1.4rem; 
-      margin-bottom: 25px;
-      border-bottom: 1px solid rgba(59, 130, 246, 0.3);
-      padding-bottom: 10px;
-      display: inline-block;
+      font-size: 1.5rem; 
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
 
     ul { list-style: none; padding: 0; }
-    
     li { 
-      margin-bottom: 16px; 
+      margin-bottom: 12px; 
       padding-left: 30px; 
       position: relative; 
       color: var(--text-dim);
-      transition: 0.4s;
-      opacity: 0;
-      transform: translateX(-20px);
-      animation: slideRight 0.5s forwards;
+      font-size: 1rem;
     }
+    li::before { content: "✓"; position: absolute; left: 0; color: var(--accent-cyan); font-weight: bold; }
 
-    li:nth-child(1) { animation-delay: 0.7s; }
-    li:nth-child(2) { animation-delay: 0.8s; }
-    li:nth-child(3) { animation-delay: 0.9s; }
-    li:nth-child(4) { animation-delay: 1.0s; }
-    li:nth-child(5) { animation-delay: 1.1s; }
-
-    @keyframes slideRight {
-      to { opacity: 1; transform: translateX(0); }
-    }
-
-    li:hover { color: var(--white); transform: scale(1.05); }
-    li::before { 
-      content: "✦"; 
-      position: absolute; 
-      left: 0; 
-      color: var(--accent-blue);
-    }
-
+    /* CTA Section */
     .cta-box {
       margin-top: 60px;
-      padding: 50px;
-      background: rgba(255, 255, 255, 0.03);
+      padding: 40px;
+      background: linear-gradient(145deg, rgba(59, 130, 246, 0.1), rgba(6, 182, 212, 0.05));
       border-radius: 30px;
-      border: 1px solid rgba(255, 255, 255, 0.05);
       text-align: center;
-      transition: 0.5s;
-    }
-    .cta-box:hover {
-      border-color: rgba(59, 130, 246, 0.4);
-      background: rgba(59, 130, 246, 0.02);
+      border: 1px solid rgba(59, 130, 246, 0.2);
     }
 
     .btn-contact {
-      position: relative;
-      overflow: hidden;
       display: inline-block;
       background: var(--accent-blue);
       color: white;
-      padding: 22px 60px;
+      padding: 18px 45px;
       text-decoration: none;
-      border-radius: 20px;
+      border-radius: 15px;
       font-weight: 800;
-      font-size: 1.2rem;
-      margin-top: 20px;
-      transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+      transition: 0.3s;
+      box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
     }
+    .btn-contact:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(59, 130, 246, 0.5); }
 
-    .btn-contact::after {
-      content: "";
-      position: absolute;
-      top: -50%; left: -50%; width: 200%; height: 200%;
-      background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
-      transform: rotate(45deg);
-      animation: sweep 4s infinite;
-    }
-
-    @keyframes sweep {
-      0% { left: -110%; }
-      30% { left: 110%; }
-      100% { left: 110%; }
-    }
-
-    .btn-contact:hover { 
-      transform: translateY(-5px) scale(1.02);
-      box-shadow: 0 20px 40px rgba(59, 130, 246, 0.5);
-    }
-
+    /* Chat Elements */
     #chat-bubble {
       position: fixed;
-      bottom: 40px; right: 40px;
-      width: 75px; height: 75px;
-      background: var(--accent-blue);
+      bottom: 30px; right: 30px;
+      width: 70px; height: 70px;
+      background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));
       border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
-      font-size: 32px;
+      font-size: 30px;
       cursor: pointer;
-      z-index: 9999;
-      box-shadow: 0 10px 30px rgba(59, 130, 246, 0.5);
-      animation: pulse 2s infinite;
-      transition: 0.5s;
-    }
-
-    @keyframes pulse {
-      0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7); }
-      70% { box-shadow: 0 0 0 20px rgba(59, 130, 246, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+      z-index: 10000;
+      box-shadow: 0 10px 25px rgba(59, 130, 246, 0.4);
     }
 
     #chat-popup {
       position: fixed;
-      bottom: 130px; right: 40px;
-      width: 420px; height: 650px;
-      border-radius: 35px;
+      bottom: 110px; right: 30px;
+      width: 400px; height: 600px;
+      border-radius: 24px;
       display: none;
-      z-index: 9999;
+      z-index: 10000;
       overflow: hidden;
-      box-shadow: 0 40px 80px rgba(0,0,0,0.8);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      transform-origin: bottom right;
-      animation: zoomIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+      border: 1px solid rgba(255,255,255,0.1);
+      animation: slideUp 0.4s ease-out;
     }
 
-    @keyframes zoomIn {
-      from { opacity: 0; transform: scale(0.5) translate(20px, 20px); }
-      to { opacity: 1; transform: scale(1) translate(0, 0); }
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
-
-    @keyframes fadeIn { to { opacity: 1; } }
 
     @media (max-width: 768px) {
-      .grid-lang { grid-template-columns: 1fr; }
-      h1 { font-size: 2.5rem; }
-      .container { padding: 30px; }
-      #chat-popup { width: 90%; right: 5%; bottom: 120px; }
+      .grid-features { grid-template-columns: 1fr; }
+      .container { padding: 30px; width: 95%; }
+      #chat-popup { width: 85vw; height: 70vh; right: 7.5%; }
     }
   </style>
 </head>
@@ -251,49 +212,55 @@
 
   <div class="container">
     <header>
-      <h1>AI Chat Assistant Demo</h1>
-      <p class="description">
-        Increase sales & support / Aumente sus ventas y soporte
+      <div class="badge">E-commerce Solution</div>
+      <h1>Tu Tienda, con Inteligencia Artificial</h1>
+      <p style="color: var(--text-dim); font-size: 1.2rem; max-width: 600px; margin: 0 auto;">
+        Convierte visitantes en compradores con un asistente que conoce tus productos mejor que nadie.
       </p>
     </header>
 
-    <div class="grid-lang">
-      <div>
-        <h2>What it can do</h2>
+    <div class="product-demo">
+      <div class="product-card">👕 <span>Moda</span></div>
+      <div class="product-card">🎧 <span>Tech</span></div>
+      <div class="product-card">🧴 <span>Belleza</span></div>
+      <div class="product-card">🏠 <span>Hogar</span></div>
+      <div class="product-card">✨ <span>Y más...</span></div>
+    </div>
+
+    <div class="grid-features">
+      <div class="feature-list">
+        <h2>🚀 Ventas Automáticas</h2>
         <ul>
-          <li>Answer customer questions 24/7.</li>
-          <li>Help choose the right size/product.</li>
-          <li>Handle shipping & returns.</li>
-          <li>Improve customer confidence.</li>
-          <li>Book appointments directly.</li>
+          <li>Recomienda productos según el gusto del cliente.</li>
+          <li>Resuelve dudas de tallas y materiales al instante.</li>
+          <li>Reduce el abandono de carrito 24/7.</li>
+          <li>Soporte multi-idioma automático.</li>
         </ul>
       </div>
 
-      <div>
-        <h2>Lo que puede hacer</h2>
+      <div class="feature-list">
+        <h2>🛠️ Integración Total</h2>
         <ul>
-          <li>Responde preguntas 24/7.</li>
-          <li>Ayuda a elegir tallas/productos.</li>
-          <li>Gestiona envíos y devoluciones.</li>
-          <li>Mejora la confianza del cliente.</li>
-          <li>Reserva citas directamente.</li>
+          <li>Se conecta con tu inventario real.</li>
+          <li>Rastreo de pedidos en tiempo real.</li>
+          <li>Personalizado con los colores de tu marca.</li>
+          <li>Panel de control con métricas de ventas.</li>
         </ul>
       </div>
     </div>
 
     <div class="cta-box">
-      <h3 style="color: white; font-size: 1.6rem; margin-bottom: 15px;">🛍️ Want this on your store? / ¿Lo quieres en tu tienda?</h3>
-      <p style="color: var(--text-dim); margin-bottom: 30px;">Customized for your brand. / Personalizado para tu marca.</p>
-      <a href="mailto:contact.highdesertmedia@gmail.com" class="btn-contact">
-        Contact Me / Contáctame
-      </a>
-      <p style="margin-top:30px; font-size: 0.8rem; color: var(--accent-blue); font-weight: bold; opacity: 0.6; letter-spacing: 1.5px;">contact.highdesertmedia@gmail.com</p>
+      <h3 style="color: white; font-size: 1.8rem; margin-bottom: 10px;">¿Listo para escalar tu negocio?</h3>
+      <p style="color: var(--text-dim); margin-bottom: 25px;">Diseñamos este bot específicamente para tu catálogo de productos.</p>
+      <a href="mailto:contact.highdesertmedia@gmail.com" class="btn-contact">Solicitar Demo Personalizada</a>
     </div>
 
-    <div style="text-align:center; margin-top: 40px; color: var(--text-dim); font-size: 0.8rem; opacity: 0.5;">
-        HIGH DESERT MEDIA • AI SOLUTIONS 2024
-    </div>
+    <footer style="text-align:center; margin-top: 40px; color: var(--text-dim); font-size: 0.7rem; letter-spacing: 2px;">
+        HIGH DESERT MEDIA © 2024 • INTELIGENCIA ARTIFICIAL APLICADA
+    </footer>
   </div>
+
+  <div id="chat-bubble">💬</div>
 
   <div id="chat-popup">
     <iframe
@@ -303,23 +270,21 @@
     ></iframe>
   </div>
 
-  <div id="chat-bubble">🤖</div>
-
   <script>
     const bubble = document.getElementById("chat-bubble");
     const popup = document.getElementById("chat-popup");
 
     bubble.addEventListener("click", () => {
-      if (popup.style.display === "none" || popup.style.display === "") {
-        popup.style.display = "block";
-      } else {
-        popup.style.display = "none";
-      }
+      const isVisible = popup.style.display === "block";
+      popup.style.display = isVisible ? "none" : "block";
+      bubble.innerHTML = isVisible ? "💬" : "✕";
     });
 
+    // Abrir automáticamente en escritorio después de 3 seg
     setTimeout(() => { 
-      if(window.innerWidth > 768) {
-        popup.style.display = "block"; 
+      if(window.innerWidth > 1024) {
+        popup.style.display = "block";
+        bubble.innerHTML = "✕";
       }
     }, 3000);
   </script>
